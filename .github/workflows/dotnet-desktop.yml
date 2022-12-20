@@ -103,6 +103,8 @@ jobs:
         Appx_Package_Build_Mode: StoreUpload
         Configuration: ${{ matrix.configuration }}
         
+    - run : pwd
+    
     - name: List directory for build drop
       run: ls ${{ env.Wap_Project_Directory }}\AppPackages    
 
