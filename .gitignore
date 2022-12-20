@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/WinApp_For_CI_CD
+/WinApp_For_CI_CD/obj/Debug
+/WinApp_For_CI_CD/bin/Debug
