@@ -99,6 +99,9 @@ jobs:
         Appx_Bundle_Platforms: x86|x64
         Appx_Package_Build_Mode: StoreUpload
         Configuration: ${{ matrix.configuration }}
+        
+    - name: List directory for build drop
+      run: ls ${{ env.Wap_Project_Directory }}\AppPackages    
 
     # Remove the pfx
 #     - name: Remove the pfx
