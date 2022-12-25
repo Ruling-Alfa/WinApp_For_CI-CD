@@ -5,3 +5,9 @@
 /.vs/WinApp_For_CI_CD
 /WinApp_For_CI_CD/obj/Debug
 /WinApp_For_CI_CD/bin/Debug
+/WinApp_For_CI_CD/bin/Release
+/WinApp_For_CI_CD/obj/Release
+/WinApp_For_CI_CD/publish
+/WinApp_For_CI_CD/WinApp_For_CI_CD/AppPackages
+/WinApp_For_CI_CD/WinApp_For_CI_CD/AppPackagesApplication Files/WinApp_For_CI_CD_1_0_0_0
+/WinApp_For_CI_CD/WinApp_For_CI_CD
