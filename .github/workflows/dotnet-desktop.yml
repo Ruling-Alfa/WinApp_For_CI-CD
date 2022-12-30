@@ -128,7 +128,7 @@ jobs:
         uses: actions/download-artifact@v3.0.1
         with:
           # Artifact name
-          name: Deploy_${{ github.run_id }}_${{ github.run_number }}_${{ github.run_attempt }}_artifact
+          name: Build_${{ github.run_id }}_${{ github.run_number }}_${{ github.run_attempt }}_artifact
           # Destination path
           path: AppPackages
           
