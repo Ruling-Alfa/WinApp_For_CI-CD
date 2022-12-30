@@ -121,6 +121,7 @@ jobs:
         
   deploy:
     name: Deploy to Github Pages
+    needs: build
     runs-on: windows-2019
     steps:
       - name: Download a Build Artifact
