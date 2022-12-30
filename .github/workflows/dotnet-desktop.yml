@@ -43,7 +43,14 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+  
 jobs:
 
   build:
@@ -123,9 +130,13 @@ jobs:
     name: Deploy to Github Pages
     needs: build
     runs-on: ubuntu-latest
-    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+      
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
+      contents: read
       pages: write      # to deploy to Pages
       id-token: write   # to verify the deployment originates from an appropriate source
       
@@ -135,8 +146,7 @@ jobs:
         with:
           # Artifact name
           name: Build_${{ github.run_id }}_${{ github.run_number }}_${{ github.run_attempt }}_artifact
-          # Destination path
-          path: AppPackages
+
           
       - name: Deploy GitHub Pages site
         uses: actions/deploy-pages@v1.2.3
@@ -152,4 +162,4 @@ jobs:
           # Time in milliseconds between two deployment status report (default: 5 seconds)
           reporting_interval: 5000
           # Name of the artifact to deploy
-          artifact_name: Win_Form_Neel
+          artifact_name: Build_${{ github.run_id }}_${{ github.run_number }}_${{ github.run_attempt }}_artifact
