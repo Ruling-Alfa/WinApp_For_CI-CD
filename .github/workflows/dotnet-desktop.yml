@@ -47,7 +47,7 @@ on:
 jobs:
 
   build:
-
+    name: Build Win Forms Application
     strategy:
       matrix:
         configuration: [Release]
@@ -116,5 +116,33 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: MSIX Package
+        name: Build_${{ github.run_id }}_${{ github.run_number }}_${{ github.run_attempt }}_artifact
         path: ${{ env.Wap_Project_Directory }}\AppPackages
+        
+  deploy:
+    name: Deploy to Github Pages
+    runs-on: windows-2019
+    steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3.0.1
+        with:
+          # Artifact name
+          name: Deploy_${{ github.run_id }}_${{ github.run_number }}_${{ github.run_attempt }}_artifact
+          # Destination path
+          path: AppPackages
+          
+      - name: Deploy GitHub Pages site
+        uses: actions/deploy-pages@v1.2.3
+        with:
+          # Should this action only emit build telemetry instead of deploying the build artifact?
+          emit_telemetry: false
+          # GitHub token
+          token:  ${{ github.token }}
+          # Time in milliseconds after which to timeout and cancel the deployment (default: 10 minutes)
+          timeout: 600000
+          # Maximum number of status report errors before cancelling a deployment (default: 10)
+          error_count: 10
+          # Time in milliseconds between two deployment status report (default: 5 seconds)
+          reporting_interval: 5000
+          # Name of the artifact to deploy
+          artifact_name: Win_Form_Neel
